@@ -1,0 +1,19 @@
+stages:
+  - build_deploy
+
+build_image:
+  stage: build_deploy
+  only:
+    - develop
+  tags:
+    - shell-1
+  script:
+    - echo "ALLOWED_APPS=$ALLOWED_APPS" >> .env
+    - echo "NODE_ENV=$NODE_ENV" >> .env
+    - echo "DATABASE_URL=$DATABASE_URL" >> .env
+    - echo "EMECEF_BASEURL=$EMECEF_DEV_BASEURL" >> .env
+    - echo "EMECEF_BASEURL=$EMECEF_BASEURL" >> .env
+    - echo "HTTP_PORT=$HTTP_PORT"
+    - echo "EMECEF_USER_TOKEN=$EMECEF_USER_TOKEN"
+    - echo "EMECEF_USER_NAME=$EMECEF_USER_NAME"
+    - docker-compose up --build -d 

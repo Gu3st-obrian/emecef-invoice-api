@@ -1,0 +1,26 @@
+version: "3.5"
+services:
+  emecef_dgi:
+    build: 
+      context: .
+    ports:
+      - "3331:3000"
+    container_name: emecef_dgi_api
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_URL: ${DATABASE_URL}
+      ALLOWED_APPS: ${ALLOWED_APPS}
+      EMECEF_BASEURL: ${EMECEF_BASEURL}
+      HTTP_PORT: ${HTTP_PORT}
+      REQUEST_TIMESTAMP_DELAY: 300000
+      EMECEF_USER_TOKEN: ${EMECEF_USER_TOKEN}
+      EMECEF_USER_IFU: ${EMECEF_USER_IFU}
+      EMECEF_USER_NAME: ${EMECEF_USER_NAME}
+    restart: always
+
+networks:
+  default:
+    external: true
+    name: app_1_dev_netd
+    
+
